@@ -257,7 +257,7 @@
           "tagEn": "WEEK 1",
           "descTr": "Kuzu incik, suyuna firik bulguru.",
           "descEn": "Lamb shank with freekeh bulgur in its own juices.",
-          "price": "1"
+          "price": "1250"
         },
         {
           "id": "sofra-2",
@@ -265,7 +265,7 @@
           "tagEn": "WEEK 2",
           "descTr": "Közde köfte, domatesli reyhanlı pirinç pilavı.",
           "descEn": "Chargrilled köfte with tomato & basil rice pilaf.",
-          "price": "1"
+          "price": "1250"
         },
         {
           "id": "sofra-3",
@@ -273,7 +273,7 @@
           "tagEn": "WEEK 3",
           "descTr": "Çökertme kebabı.",
           "descEn": "Çökertme kebab.",
-          "price": "1"
+          "price": "1250"
         },
         {
           "id": "sofra-4",
@@ -281,7 +281,7 @@
           "tagEn": "WEEK 4",
           "descTr": "Şişte satır kıyması Ali Nazik.",
           "descEn": "Skewered hand-minced Ali Nazik.",
-          "price": "1"
+          "price": "1125"
         }
       ]
     },
