@@ -1,93 +1,341 @@
 {
-  "gallery": [
-    {"id":"gal-1","image":"mekan.jpeg","altTr":"Keskin Alaçatı dış mekân","altEn":"Keskin Alaçatı outdoor seating"},
-    {"id":"gal-2","image":"lahmacun.jpeg","altTr":"Taş fırın lahmacun","altEn":"Stone-oven lahmacun"},
-    {"id":"gal-3","image":"tahinli.jpeg","altTr":"Tahinli pide tatlısı","altEn":"Sesame tahini dessert pide"},
-    {"id":"gal-4","image":"tabela.jpeg","altTr":"Keskin Ekşi Mayalı Pide tabelası","altEn":"Keskin Ekşi Mayalı Pide sign"}
-  ],
   "categories": {
     "corba": {
       "titleTr": "Gün Boyu Çorba",
       "titleEn": "Soup of the Day",
       "items": [
-        {"id":"corba-1","nameTr":"Taşfırından Köz Patlıcan","nameEn":"Stone-Oven Smoked Eggplant","descTr":"","descEn":"","price":""},
-        {"id":"corba-2","nameTr":"Klasik Usûl Mercimek","nameEn":"Classic Lentil Soup","descTr":"","descEn":"","price":""},
-        {"id":"corba-3","nameTr":"Yaz Çorbası","nameEn":"Summer Soup","descTr":"Soğuk servis edilir.","descEn":"Served cold.","price":""}
+        {
+          "id": "corba-1",
+          "nameTr": "Taşfırından Köz Patlıcan",
+          "nameEn": "Stone-Oven Smoked Eggplant",
+          "descTr": "",
+          "descEn": "",
+          "price": ""
+        },
+        {
+          "id": "corba-2",
+          "nameTr": "Klasik Usûl Mercimek",
+          "nameEn": "Classic Lentil Soup",
+          "descTr": "",
+          "descEn": "",
+          "price": ""
+        },
+        {
+          "id": "corba-3",
+          "nameTr": "Yaz Çorbası",
+          "nameEn": "Summer Soup",
+          "descTr": "Soğuk servis edilir.",
+          "descEn": "Served cold.",
+          "price": ""
+        }
       ]
     },
     "oncesi": {
       "titleTr": "Pide'den Önce",
       "titleEn": "Before the Pide",
       "items": [
-        {"id":"once-1","nameTr":"Tava Yoğurt Kale Biberi","nameEn":"Pan Yogurt with Kale Pepper","descTr":"","descEn":"","price":""},
-        {"id":"once-2","nameTr":"Humus Ege","nameEn":"Aegean Hummus","descTr":"","descEn":"","price":""},
-        {"id":"once-3","nameTr":"Bostan Salatası","nameEn":"Garden Salad","descTr":"","descEn":"","price":""},
-        {"id":"once-4","nameTr":"Çubuk Turşu","nameEn":"Pickled Vegetables","descTr":"","descEn":"","price":""},
-        {"id":"once-5","nameTr":"Muhammara","nameEn":"Muhammara","descTr":"","descEn":"","price":""}
+        {
+          "id": "once-1",
+          "nameTr": "Tava Yoğurt Kale Biberi",
+          "nameEn": "Pan Yogurt with Kale Pepper",
+          "descTr": "",
+          "descEn": "",
+          "price": ""
+        },
+        {
+          "id": "once-2",
+          "nameTr": "Humus Ege",
+          "nameEn": "Aegean Hummus",
+          "descTr": "",
+          "descEn": "",
+          "price": ""
+        },
+        {
+          "id": "once-3",
+          "nameTr": "Bostan Salatası",
+          "nameEn": "Garden Salad",
+          "descTr": "",
+          "descEn": "",
+          "price": ""
+        },
+        {
+          "id": "once-4",
+          "nameTr": "Çubuk Turşu",
+          "nameEn": "Pickled Vegetables",
+          "descTr": "",
+          "descEn": "",
+          "price": ""
+        },
+        {
+          "id": "once-5",
+          "nameTr": "Muhammara",
+          "nameEn": "Muhammara",
+          "descTr": "",
+          "descEn": "",
+          "price": ""
+        }
       ]
     },
     "spesiyal": {
       "titleTr": "Şef Spesiyal Pideleri",
       "titleEn": "Chef's Specialty Pides",
       "items": [
-        {"id":"spesiyal-1","nameTr":"Öteki Yaka Pide","nameEn":"Öteki Yaka Pide","descTr":"Saganaki, mastela, feta peyniri Dimitri'den.","descEn":"Saganaki, mastela, feta cheese from Dimitri.","price":""},
-        {"id":"spesiyal-2","nameTr":"Köz Patlıcanlı Pide","nameEn":"Smoked Eggplant Pide","descTr":"Muharrem amcanın tarladan.","descEn":"From Uncle Muharrem's field.","price":""},
-        {"id":"spesiyal-3","nameTr":"Sakatat (Kürekçinin Tavsiyesi)","nameEn":"Offal (The Rower's Recommendation)","descTr":"Karamelize Ovacık soğan, mantar, peynir, dana dil, maydanoz, soğan sumak.","descEn":"Caramelized Ovacık onion, mushroom, cheese, beef tongue, parsley, onion sumac.","price":""},
-        {"id":"spesiyal-4","nameTr":"Alaçatı Çıtırı","nameEn":"Alaçatı Crisp","descTr":"Kabak çiçeği, fesleğen, Girit kabağı, çam fıstığı, peynir.","descEn":"Zucchini flower, basil, Cretan squash, pine nuts, cheese.","price":""},
-        {"id":"spesiyal-5","nameTr":"Bardacık İncirli Pide","nameEn":"Bardacık Fig Pide","descTr":"Küflü peynir, Alaçatı kekik balı, yerli bardacık inciri, kuru Boşnak eti.","descEn":"Blue-veined cheese, Alaçatı thyme honey, local Bardacık fig, dried Bosnian-style beef.","price":""}
+        {
+          "id": "spesiyal-1",
+          "nameTr": "Öteki Yaka Pide",
+          "nameEn": "Öteki Yaka Pide",
+          "descTr": "Saganaki, mastela, feta peyniri Dimitri'den.",
+          "descEn": "Saganaki, mastela, feta cheese from Dimitri.",
+          "price": ""
+        },
+        {
+          "id": "spesiyal-2",
+          "nameTr": "Köz Patlıcanlı Pide",
+          "nameEn": "Smoked Eggplant Pide",
+          "descTr": "Muharrem amcanın tarladan.",
+          "descEn": "From Uncle Muharrem's field.",
+          "price": ""
+        },
+        {
+          "id": "spesiyal-3",
+          "nameTr": "Sakatat (Kürekçinin Tavsiyesi)",
+          "nameEn": "Offal (The Rower's Recommendation)",
+          "descTr": "Karamelize Ovacık soğan, mantar, peynir, dana dil, maydanoz, soğan sumak.",
+          "descEn": "Caramelized Ovacık onion, mushroom, cheese, beef tongue, parsley, onion sumac.",
+          "price": ""
+        },
+        {
+          "id": "spesiyal-4",
+          "nameTr": "Alaçatı Çıtırı",
+          "nameEn": "Alaçatı Crisp",
+          "descTr": "Kabak çiçeği, fesleğen, Girit kabağı, çam fıstığı, peynir.",
+          "descEn": "Zucchini flower, basil, Cretan squash, pine nuts, cheese.",
+          "price": ""
+        },
+        {
+          "id": "spesiyal-5",
+          "nameTr": "Bardacık İncirli Pide",
+          "nameEn": "Bardacık Fig Pide",
+          "descTr": "Küflü peynir, Alaçatı kekik balı, yerli bardacık inciri, kuru Boşnak eti.",
+          "descEn": "Blue-veined cheese, Alaçatı thyme honey, local Bardacık fig, dried Bosnian-style beef.",
+          "price": ""
+        }
       ]
     },
     "klasikler": {
       "titleTr": "Klasikler",
       "titleEn": "Classics",
       "items": [
-        {"id":"klasik-1","nameTr":"Lahmacun","nameEn":"Lahmacun","descTr":"Ovacık domates, yerli çarliston biber, maydanoz, yerli soğan.","descEn":"Ovacık tomato, local çarliston pepper, parsley, local onion.","price":"","image":"lahmacun.jpeg"},
-        {"id":"klasik-2","nameTr":"Kıymalı Pide","nameEn":"Minced Meat Pide","descTr":"Dana kıyma, Ovacık domates, çarliston biber, yerli soğan, maydanoz.","descEn":"Ground beef, Ovacık tomato, çarliston pepper, local onion, parsley.","price":""},
-        {"id":"klasik-3","nameTr":"Kuşbaşılı Pide","nameEn":"Diced Beef Pide","descTr":"Dana antrikot, Ovacık domates, yerli çarliston biber.","descEn":"Beef entrecôte, Ovacık tomato, local çarliston pepper.","price":""},
-        {"id":"klasik-4","nameTr":"Tire Sucuklu Pide","nameEn":"Tire Sausage Pide","descTr":"Göbek kaşar peyniri, Tire sucuk, domates.","descEn":"Aged kaşar cheese, Tire sausage, tomato.","price":""},
-        {"id":"klasik-5","nameTr":"Pastırmalı","nameEn":"Pastrami Pide","descTr":"Eski kaşar Kars'tan ev yapımı pastırma.","descEn":"Aged kaşar cheese, homemade pastrami from Kars.","price":""},
-        {"id":"klasik-6","nameTr":"Ege Yeşili","nameEn":"Aegean Greens Pide","descTr":"Alaçatı otları, Bergama tulum ve Ezine peyniri ham çökelek, kaymak.","descEn":"Alaçatı herbs, Bergama tulum & Ezine cheese, fresh curd, kaymak.","price":""},
-        {"id":"klasik-7","nameTr":"Tadım","nameEn":"Tasting Trio","descTr":"Mini 3'lü — kıymalı, kuşbaşılı, Ege yeşili.","descEn":"Mini trio — minced, diced beef, Aegean greens.","price":""}
+        {
+          "id": "klasik-1",
+          "nameTr": "Lahmacun",
+          "nameEn": "Lahmacun",
+          "descTr": "Ovacık domates, yerli çarliston biber, maydanoz, yerli soğan.",
+          "descEn": "Ovacık tomato, local çarliston pepper, parsley, local onion.",
+          "price": "",
+          "image": ""
+        },
+        {
+          "id": "klasik-2",
+          "nameTr": "Kıymalı Pide",
+          "nameEn": "Minced Meat Pide",
+          "descTr": "Dana kıyma, Ovacık domates, çarliston biber, yerli soğan, maydanoz.",
+          "descEn": "Ground beef, Ovacık tomato, çarliston pepper, local onion, parsley.",
+          "price": ""
+        },
+        {
+          "id": "klasik-3",
+          "nameTr": "Kuşbaşılı Pide",
+          "nameEn": "Diced Beef Pide",
+          "descTr": "Dana antrikot, Ovacık domates, yerli çarliston biber.",
+          "descEn": "Beef entrecôte, Ovacık tomato, local çarliston pepper.",
+          "price": ""
+        },
+        {
+          "id": "klasik-4",
+          "nameTr": "Tire Sucuklu Pide",
+          "nameEn": "Tire Sausage Pide",
+          "descTr": "Göbek kaşar peyniri, Tire sucuk, domates.",
+          "descEn": "Aged kaşar cheese, Tire sausage, tomato.",
+          "price": ""
+        },
+        {
+          "id": "klasik-5",
+          "nameTr": "Pastırmalı",
+          "nameEn": "Pastrami Pide",
+          "descTr": "Eski kaşar Kars'tan ev yapımı pastırma.",
+          "descEn": "Aged kaşar cheese, homemade pastrami from Kars.",
+          "price": ""
+        },
+        {
+          "id": "klasik-6",
+          "nameTr": "Ege Yeşili",
+          "nameEn": "Aegean Greens Pide",
+          "descTr": "Alaçatı otları, Bergama tulum ve Ezine peyniri ham çökelek, kaymak.",
+          "descEn": "Alaçatı herbs, Bergama tulum & Ezine cheese, fresh curd, kaymak.",
+          "price": ""
+        },
+        {
+          "id": "klasik-7",
+          "nameTr": "Tadım",
+          "nameEn": "Tasting Trio",
+          "descTr": "Mini 3'lü — kıymalı, kuşbaşılı, Ege yeşili.",
+          "descEn": "Mini trio — minced, diced beef, Aegean greens.",
+          "price": ""
+        }
       ]
     },
     "ilaveler": {
       "titleTr": "İlaveler",
       "titleEn": "Extras",
       "items": [
-        {"id":"ilave-1","nameTr":"Peynir","nameEn":"Cheese","descTr":"","descEn":"","price":""},
-        {"id":"ilave-2","nameTr":"Kümes Yumurtası","nameEn":"Free-range Egg","descTr":"","descEn":"","price":""}
+        {
+          "id": "ilave-1",
+          "nameTr": "Peynir",
+          "nameEn": "Cheese",
+          "descTr": "",
+          "descEn": "",
+          "price": ""
+        },
+        {
+          "id": "ilave-2",
+          "nameTr": "Kümes Yumurtası",
+          "nameEn": "Free-range Egg",
+          "descTr": "",
+          "descEn": "",
+          "price": ""
+        }
       ]
     },
     "icecekler": {
       "titleTr": "Yerel / Özel İçecekler",
       "titleEn": "Local & Specialty Drinks",
       "items": [
-        {"id":"icecek-1","nameTr":"Ayran","nameEn":"Ayran","descTr":"","descEn":"","price":""},
-        {"id":"icecek-2","nameTr":"Acılı Ayran","nameEn":"Spicy Ayran","descTr":"","descEn":"","price":""},
-        {"id":"icecek-3","nameTr":"Ali Göde Şalgam","nameEn":"Ali Göde Turnip Juice","descTr":"","descEn":"","price":""},
-        {"id":"icecek-4","nameTr":"Limonata","nameEn":"Lemonade","descTr":"","descEn":"","price":""},
-        {"id":"icecek-5","nameTr":"Yerli Gazoz","nameEn":"Local Soda","descTr":"","descEn":"","price":""},
-        {"id":"icecek-6","nameTr":"Kola · Fanta · Soda","nameEn":"Kola · Fanta · Soda","descTr":"","descEn":"","price":""},
-        {"id":"icecek-7","nameTr":"Tamek Meyve Suları","nameEn":"Tamek Fruit Juices","descTr":"","descEn":"","price":""}
+        {
+          "id": "icecek-1",
+          "nameTr": "Ayran",
+          "nameEn": "Ayran",
+          "descTr": "",
+          "descEn": "",
+          "price": ""
+        },
+        {
+          "id": "icecek-2",
+          "nameTr": "Acılı Ayran",
+          "nameEn": "Spicy Ayran",
+          "descTr": "",
+          "descEn": "",
+          "price": ""
+        },
+        {
+          "id": "icecek-3",
+          "nameTr": "Ali Göde Şalgam",
+          "nameEn": "Ali Göde Turnip Juice",
+          "descTr": "",
+          "descEn": "",
+          "price": ""
+        },
+        {
+          "id": "icecek-4",
+          "nameTr": "Limonata",
+          "nameEn": "Lemonade",
+          "descTr": "",
+          "descEn": "",
+          "price": ""
+        },
+        {
+          "id": "icecek-5",
+          "nameTr": "Yerli Gazoz",
+          "nameEn": "Local Soda",
+          "descTr": "",
+          "descEn": "",
+          "price": ""
+        },
+        {
+          "id": "icecek-6",
+          "nameTr": "Kola · Fanta · Soda",
+          "nameEn": "Kola · Fanta · Soda",
+          "descTr": "",
+          "descEn": "",
+          "price": ""
+        },
+        {
+          "id": "icecek-7",
+          "nameTr": "Tamek Meyve Suları",
+          "nameEn": "Tamek Fruit Juices",
+          "descTr": "",
+          "descEn": "",
+          "price": ""
+        }
       ]
     },
     "sofra": {
       "titleTr": "Ayın Sofrasında",
       "titleEn": "This Month's Table",
       "weeks": [
-        {"id":"sofra-1","tagTr":"1. HAFTA","tagEn":"WEEK 1","descTr":"Kuzu incik, suyuna firik bulguru.","descEn":"Lamb shank with freekeh bulgur in its own juices.","price":""},
-        {"id":"sofra-2","tagTr":"2. HAFTA","tagEn":"WEEK 2","descTr":"Közde köfte, domatesli reyhanlı pirinç pilavı.","descEn":"Chargrilled köfte with tomato & basil rice pilaf.","price":""},
-        {"id":"sofra-3","tagTr":"3. HAFTA","tagEn":"WEEK 3","descTr":"Çökertme kebabı.","descEn":"Çökertme kebab.","price":""},
-        {"id":"sofra-4","tagTr":"4. HAFTA","tagEn":"WEEK 4","descTr":"Şişte satır kıyması Ali Nazik.","descEn":"Skewered hand-minced Ali Nazik.","price":""}
+        {
+          "id": "sofra-1",
+          "tagTr": "1. HAFTA",
+          "tagEn": "WEEK 1",
+          "descTr": "Kuzu incik, suyuna firik bulguru.",
+          "descEn": "Lamb shank with freekeh bulgur in its own juices.",
+          "price": ""
+        },
+        {
+          "id": "sofra-2",
+          "tagTr": "2. HAFTA",
+          "tagEn": "WEEK 2",
+          "descTr": "Közde köfte, domatesli reyhanlı pirinç pilavı.",
+          "descEn": "Chargrilled köfte with tomato & basil rice pilaf.",
+          "price": ""
+        },
+        {
+          "id": "sofra-3",
+          "tagTr": "3. HAFTA",
+          "tagEn": "WEEK 3",
+          "descTr": "Çökertme kebabı.",
+          "descEn": "Çökertme kebab.",
+          "price": ""
+        },
+        {
+          "id": "sofra-4",
+          "tagTr": "4. HAFTA",
+          "tagEn": "WEEK 4",
+          "descTr": "Şişte satır kıyması Ali Nazik.",
+          "descEn": "Skewered hand-minced Ali Nazik.",
+          "price": ""
+        }
       ]
     },
     "tatli": {
       "titleTr": "Pide'den Sonra Tatlı Son",
       "titleEn": "Dessert After Pide",
       "items": [
-        {"id":"tatli-1","nameTr":"Yerli Susam Tahinli Pide","nameEn":"Local Sesame Tahini Pide","descTr":"Manda kaymaklı, Antep fıstıklı.","descEn":"With buffalo kaymak and Antep pistachio.","price":"","image":"tahinli.jpeg"},
-        {"id":"tatli-2","nameTr":"Fındık Krokanlı Taş Fırında Sütlaç","nameEn":"Stone-Oven Rice Pudding with Hazelnut Crunch","descTr":"Jersey süt ile.","descEn":"Made with Jersey milk.","price":""},
-        {"id":"tatli-3","nameTr":"Bugünün Tatlısı","nameEn":"Today's Dessert","descTr":"","descEn":"","price":""}
+        {
+          "id": "tatli-1",
+          "nameTr": "Yerli Susam Tahinli Pide",
+          "nameEn": "Local Sesame Tahini Pide",
+          "descTr": "Manda kaymaklı, Antep fıstıklı.",
+          "descEn": "With buffalo kaymak and Antep pistachio.",
+          "price": "",
+          "image": ""
+        },
+        {
+          "id": "tatli-2",
+          "nameTr": "Fındık Krokanlı Taş Fırında Sütlaç",
+          "nameEn": "Stone-Oven Rice Pudding with Hazelnut Crunch",
+          "descTr": "Jersey süt ile.",
+          "descEn": "Made with Jersey milk.",
+          "price": ""
+        },
+        {
+          "id": "tatli-3",
+          "nameTr": "Bugünün Tatlısı",
+          "nameEn": "Today's Dessert",
+          "descTr": "",
+          "descEn": "",
+          "price": ""
+        }
       ]
     }
   }
