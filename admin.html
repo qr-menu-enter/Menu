@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Keskin — Menü Yönetim Paneli</title>
+<link rel="icon" href="logo-brand-only.png">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FBF8F1; --card:#FFFFFF; --panel:#EFE4D0; --charcoal:#332720; --ink:#4A392E;
+    --terracotta:#C1502E; --line:rgba(51,39,32,0.14); --shadow:0 1px 3px rgba(51,39,32,.08),0 4px 14px rgba(51,39,32,.05);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--cream);color:var(--charcoal);font-family:'Work Sans',sans-serif;line-height:1.5;padding-bottom:60px}
+  .wrap{max-width:880px;margin:0 auto;padding:0 18px}
+  header{padding:26px 18px 10px;text-align:center}
+  header img{height:42px}
+  header h1{font-family:'Poppins',sans-serif;font-size:19px;margin:10px 0 2px}
+  header p{font-size:12.5px;opacity:.65;margin:0}
+
+  /* ---------- LOGIN ---------- */
+  .login-box{max-width:360px;margin:60px auto;background:var(--card);border-radius:18px;padding:30px 26px;box-shadow:var(--shadow)}
+  .login-box h2{font-family:'Poppins',sans-serif;font-size:17px;margin:0 0 18px;text-align:center}
+  .field{margin-bottom:14px}
+  .field label{display:block;font-size:11.5px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--ink);opacity:.7;margin-bottom:6px}
+  .field input{width:100%;padding:11px 13px;border:1px solid var(--line);border-radius:10px;font:14px 'Work Sans',sans-serif;background:#fff}
+  .btn{border:0;border-radius:999px;padding:12px 22px;font:700 13.5px 'Work Sans',sans-serif;cursor:pointer}
+  .btn-primary{background:var(--charcoal);color:#fff;width:100%}
+  .btn-primary:hover{opacity:.92}
+  .login-error{color:var(--terracotta);font-size:12.5px;margin-top:10px;text-align:center;display:none}
+  .login-note{font-size:11px;opacity:.55;margin-top:16px;text-align:center;line-height:1.5}
+
+  /* ---------- ADMIN UI ---------- */
+  #adminApp{display:none}
+  .toolbar{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:6px 0 26px}
+  .btn-outline{background:#fff;color:var(--charcoal);border:1px solid var(--line)}
+  .btn-terracotta{background:var(--terracotta);color:#fff}
+  .btn-ghost{background:var(--panel);color:var(--charcoal)}
+  .save-status{text-align:center;font-size:12.5px;color:var(--terracotta);font-weight:700;min-height:18px;margin-bottom:10px}
+
+  .category{background:var(--card);border-radius:16px;box-shadow:var(--shadow);padding:18px 18px 20px;margin-bottom:20px}
+  .category h3{font-family:'Poppins',sans-serif;font-size:15.5px;text-transform:uppercase;letter-spacing:.4px;margin:0 0 14px;color:var(--terracotta)}
+  .item-row{border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:10px;display:grid;grid-template-columns:1fr 1fr;gap:8px 10px;position:relative}
+  .item-row .full{grid-column:1/-1}
+  .item-row label{font-size:10px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:var(--ink);opacity:.6;display:block;margin-bottom:3px}
+  .item-row input,.item-row textarea{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:8px;font:13px 'Work Sans',sans-serif;background:#fff}
+  .item-row textarea{resize:vertical;min-height:36px}
+  .del-btn{position:absolute;top:10px;right:10px;background:none;border:0;color:var(--terracotta);font-size:12px;font-weight:700;cursor:pointer}
+  .add-item-btn{background:var(--panel);border:1px dashed var(--terracotta);color:var(--ink);border-radius:10px;padding:10px;width:100%;font:700 12.5px 'Work Sans',sans-serif;cursor:pointer;margin-top:4px}
+  @media(max-width:480px){.item-row{grid-template-columns:1fr}}
+
+  /* ---------- GITHUB PANEL ---------- */
+  .gh-panel{background:var(--card);border-radius:16px;box-shadow:var(--shadow);padding:18px 20px;margin:0 0 20px}
+  .gh-panel h3{font-family:'Poppins',sans-serif;font-size:15px;margin:0 0 6px}
+  .gh-note{font-size:11.5px;opacity:.65;line-height:1.6;margin:8px 0}
+  .gh-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px 10px;margin-top:10px}
+  @media(max-width:560px){.gh-grid{grid-template-columns:1fr}}
+  .gh-grid .field{margin-bottom:0}
+  .gh-grid input{padding:9px 11px}
+  .gh-remember{display:flex;align-items:center;gap:7px;font-size:12px;margin-top:10px;cursor:pointer}
+
+  /* ---------- WEEK ROWS (sofra) ---------- */
+  .week-row{border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:10px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px 10px;position:relative}
+  .week-row .full{grid-column:1/-1}
+  .week-row label{font-size:10px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:var(--ink);opacity:.6;display:block;margin-bottom:3px}
+  .week-row input,.week-row textarea{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:8px;font:13px 'Work Sans',sans-serif;background:#fff}
+  @media(max-width:560px){.week-row{grid-template-columns:1fr}}
+
+  /* ---------- GALLERY ADMIN ---------- */
+  #galleryItemsWrap{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px;margin-bottom:14px}
+  .gal-card{position:relative;border-radius:10px;overflow:hidden;background:var(--panel);aspect-ratio:1/1}
+  .gal-card img{width:100%;height:100%;object-fit:cover;display:block}
+  .gal-card .gal-del{position:absolute;top:5px;right:5px;background:rgba(20,13,10,.65);color:#fff;border:0;border-radius:50%;width:24px;height:24px;font-size:12px;cursor:pointer;line-height:1}
+  .upload-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+  .upload-row input[type="file"]{flex:1;min-width:180px;font-size:12.5px}
+  .upload-row input[type="text"]{flex:2;min-width:200px;padding:9px 11px;border:1px solid var(--line);border-radius:8px;font:13px 'Work Sans',sans-serif}
+  .item-row .img-upload-row{display:flex;gap:6px;align-items:center;margin-top:6px}
+  .item-row .img-upload-row input[type="file"]{font-size:11px;flex:1}
+  .item-row .img-upload-row button{background:var(--panel);border:0;border-radius:8px;padding:7px 10px;font:700 11px 'Work Sans',sans-serif;cursor:pointer;white-space:nowrap}
+  .upload-status{font-size:11px;color:var(--terracotta);margin-top:4px}
+
+  /* ---------- TABS ---------- */
+  .tab-row{display:flex;gap:8px;justify-content:center;margin:0 0 20px;flex-wrap:wrap}
+  .tab-btn{background:#fff;border:1px solid var(--line);color:var(--charcoal);border-radius:999px;padding:10px 20px;font:700 13px 'Work Sans',sans-serif;cursor:pointer;opacity:.6}
+  .tab-btn.active{background:var(--charcoal);color:#fff;opacity:1}
+
+  /* ---------- HOME EDITOR ---------- */
+  #homeTab{display:none}
+  .home-editor-wrap{display:flex;gap:26px;flex-wrap:wrap;justify-content:center;align-items:flex-start}
+  .phone-mini{position:relative;width:230px;height:498px;border-radius:26px;overflow:hidden;box-shadow:var(--shadow);flex-shrink:0;background:#111}
+  .phone-mini .hp-photo{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(20,13,10,.22),rgba(20,13,10,.76)),url('mekan.jpeg') center/cover no-repeat}
+  .phone-mini .hp-content{position:relative;z-index:2;height:100%;padding:44px 14px 52px;display:flex;flex-direction:column;justify-content:space-between;text-align:center;color:#fff}
+  .phone-mini .hp-logo{width:min(68%,180px);margin:0 auto;display:block;filter:brightness(0) invert(1)}
+  .phone-mini .hp-copy{margin-top:110px}
+  .phone-mini .hp-eyebrow{text-transform:uppercase;letter-spacing:1.5px;font-size:7px;font-weight:700;opacity:.85;margin-bottom:8px}
+  .phone-mini .hp-copy h1{font-size:17px;margin:0 0 8px;line-height:1.15;font-family:'Poppins',sans-serif}
+  .phone-mini .hp-copy p{font-size:8.5px;opacity:.92;margin:0 0 12px;line-height:1.45}
+  .phone-mini .hp-info{font-size:7.5px;opacity:.85}
+  .phone-mini .hp-footer{margin-top:auto;padding-top:10px;font-size:6.5px;opacity:.65;border-top:1px solid rgba(255,255,255,.18)}
+  .phone-mini .hp-nav{position:absolute;left:8px;right:8px;bottom:8px;height:34px;background:rgba(30,24,20,.92);border-radius:12px;z-index:5}
+  .home-sliders{flex:1;min-width:240px;max-width:340px}
+  .home-sliders .row{margin-bottom:20px}
+  .home-sliders label{display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:8px;font-weight:600}
+  .home-sliders label span{opacity:.6;font-variant-numeric:tabular-nums}
+  .home-sliders input[type=range]{width:100%;accent-color:var(--terracotta)}
+  .home-status{font-size:11.5px;opacity:.7;line-height:1.6;margin-top:6px}
+</style>
+</head>
+<body>
+
+<header>
+  <img src="logo-brand-only.png" alt="Keskin">
+  <h1>Menü Yönetim Paneli</h1>
+  <p>Ürün ekleyin, kaldırın, fiyatları düzenleyin.</p>
+</header>
+
+<!-- LOGIN -->
+<div class="login-box" id="loginBox">
+  <h2>Giriş Yap</h2>
+  <div class="field"><label>Kullanıcı Adı</label><input type="text" id="userInput" autocomplete="username"></div>
+  <div class="field"><label>Şifre</label><input type="password" id="passInput" autocomplete="current-password"></div>
+  <button class="btn btn-primary" id="loginBtn">Giriş Yap</button>
+  <p class="login-error" id="loginError">Kullanıcı adı veya şifre hatalı.</p>
+  <p class="login-note">Şifreniz kodun içinde açık metin olarak durmuyor — yalnızca bir özeti (hash) saklanıyor. Yine de bu koruma sunucu tarafında değil, sayfanın kendi kodunda çalışıyor; küçük bir işletme için günlük kullanımda yeterli bir engel, ama banka düzeyinde bir güvenlik değil. Değiştirme talimatı admin.html dosyasının en üstünde.</p>
+</div>
+
+<!-- ADMIN APP -->
+<div id="adminApp">
+  <div class="wrap">
+    <div class="gh-panel" id="ghPanel">
+      <h3>GitHub'a Otomatik Yayınla</h3>
+      <p class="gh-note">Doldurup kaydettiğinizde, "Kaydet ve Yayınla" butonu değişikliği doğrudan GitHub reponuza yükler — dosya indirip elle yüklemenize gerek kalmaz. GitHub Pages birkaç saniye içinde siteyi otomatik günceller.</p>
+      <div class="gh-grid">
+        <div class="field"><label>GitHub Kullanıcı Adı</label><input id="ghOwner" placeholder="örn. keskinpide"></div>
+        <div class="field"><label>Repo Adı</label><input id="ghRepo" placeholder="örn. qr-menu-enter"></div>
+        <div class="field"><label>Branch</label><input id="ghBranch" placeholder="main"></div>
+        <div class="field"><label>Personal Access Token</label><input id="ghToken" type="password" placeholder="ghp_..."></div>
+      </div>
+      <label class="gh-remember"><input type="checkbox" id="ghRemember"> Bu bilgileri bu tarayıcıda hatırla</label>
+      <p class="gh-note">Token oluştururken GitHub'da <strong>Settings → Developer settings → Fine-grained tokens</strong> üzerinden, yalnızca bu repoyu kapsayan ve yalnızca "Contents: Read and write" izni olan bir token oluşturmanızı öneririz — hesabınızın tamamına erişimi olan bir token değil.</p>
+    </div>
+
+    <div class="tab-row">
+      <button class="tab-btn active" id="tabMenuBtn">Menü Düzenle</button>
+      <button class="tab-btn" id="tabHomeBtn">Ana Sayfayı Düzenle</button>
+    </div>
+
+    <div id="menuTab">
+      <div class="toolbar">
+        <button class="btn btn-terracotta" id="publishBtn">Kaydet ve Yayınla (GitHub'a Otomatik Yükle)</button>
+        <button class="btn btn-outline" id="saveBtn">Sadece Bu Tarayıcıda Önizle</button>
+        <button class="btn btn-outline" id="downloadBtn">menu-data.json İndir</button>
+        <button class="btn btn-outline" id="resetBtn">Siteden Yeniden Yükle</button>
+        <button class="btn btn-ghost" id="logoutBtn">Çıkış Yap</button>
+      </div>
+      <p class="save-status" id="saveStatus"></p>
+
+      <div class="category" id="galleryCategory">
+        <h3>Galeri Görselleri</h3>
+        <div id="galleryItemsWrap"></div>
+        <div class="upload-row">
+          <input type="file" id="galleryFileInput" accept="image/*">
+          <input type="text" id="galleryAltInput" placeholder="Görsel açıklaması (opsiyonel, örn. Bahçemizden bir kare)">
+          <button class="btn btn-terracotta" id="galleryUploadBtn">Görseli Yükle ve Galeriye Ekle</button>
+        </div>
+        <p class="gh-note">Yüklenen görsel doğrudan GitHub reponuza gönderilir ve menu-data.json otomatik güncellenir — bunun için yukarıdaki GitHub bilgilerinin dolu olması gerekir.</p>
+      </div>
+
+      <div id="categoriesWrap"></div>
+    </div>
+
+    <div id="homeTab">
+      <div class="category">
+        <h3 style="color:var(--terracotta);font-family:'Poppins',sans-serif;font-size:15.5px;margin:0 0 4px">Ana Sayfa Yerleşimi</h3>
+        <p class="gh-note" style="margin-top:0">Kaydırıcılarla logoyu, başlık metnini ve alt bilgiyi (footer) aşağı/yukarı oynat — solda canlı önizlemesini gör. Beğendiğinde "Kaydet ve Yayınla"ya bas, değişiklik doğrudan GitHub'a yüklenip siteye yansır.</p>
+        <div class="home-editor-wrap">
+          <div class="phone-mini">
+            <div class="hp-photo"></div>
+            <div class="hp-content" id="hpContent">
+              <div><img class="hp-logo" src="logo-brand-only.png" alt="Keskin"></div>
+              <div class="hp-copy" id="hpCopy">
+                <div class="hp-eyebrow">EKŞİ MAYA · TAŞ FIRIN · ALAÇATI</div>
+                <h1>Yeni bir lezzet hikâyesi</h1>
+                <p>Zeytin ve meşe odunuyla yanan taş fırınımızda, özenle hazırlanan ekşi mayalı pideler.</p>
+                <div class="hp-info">Her gün 12.00–00.00 · Alaçatı, Çeşme</div>
+              </div>
+              <div class="hp-footer">Gizlilik Politikası · Çerez Politikası<br>© 2026 Keskin Ekşi Mayalı Pide.</div>
+            </div>
+            <div class="hp-nav"></div>
+          </div>
+          <div class="home-sliders">
+            <div class="row">
+              <label>KESKİN logosu (üst boşluk) <span id="hv1">78px</span></label>
+              <input type="range" min="20" max="160" value="78" id="hs1">
+            </div>
+            <div class="row">
+              <label>Başlık / metin bloğu (aşağı kayma) <span id="hv2">190px</span></label>
+              <input type="range" min="60" max="320" value="190" id="hs2">
+            </div>
+            <div class="row">
+              <label>Footer (alt kenara yakınlık) <span id="hv3">94px</span></label>
+              <input type="range" min="40" max="140" value="94" id="hs3">
+            </div>
+            <button class="btn btn-terracotta" id="homePublishBtn" style="width:100%">Kaydet ve Yayınla (GitHub'a Otomatik Yükle)</button>
+            <p class="home-status" id="homeStatus"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  /* ============ KİMLİK BİLGİSİ — buradan değiştirin ============
+     Şifre burada açık metin olarak durmuyor; kullanıcı adı + şifrenin
+     SHA-256 özeti (hash) saklanıyor. Yeni bir kullanıcı adı/şifre
+     belirlemek için:
+       1. Bu sayfayı bir tarayıcıda açın, F12 / sağ tık → "İncele" ile
+          Console (Konsol) sekmesini açın.
+       2. Şunu yazıp Enter'a basın (kendi kullanıcı adınızı ve
+          şifrenizi yazarak):
+          crypto.subtle.digest('SHA-256', new TextEncoder().encode('kullaniciadi:sifre')).then(b=>console.log([...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')))
+       3. Çıkan uzun kod dizisini kopyalayıp aşağıdaki ADMIN_CRED_HASH
+          satırına yapıştırın.
+  ================================================================= */
+  const ADMIN_CRED_HASH = '6d0f0d165ba9c8f74a1d33228ee0229ed679f034948647490e0252899952d394';
+  /* Varsayılan giriş: kullanıcı adı "keskin", şifre "Alacati2026!" — bu değeri değiştirene kadar geçerlidir. */
+
+  async function sha256Hex(str){
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+    return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+
+  const SESSION_KEY = 'keskin-admin-session';
+  const MENU_STORAGE_KEY = 'keskin-menu-data';
+
+  const loginBox = document.getElementById('loginBox');
+  const adminApp = document.getElementById('adminApp');
+  const loginError = document.getElementById('loginError');
+
+  function showApp(){
+    loginBox.style.display = 'none';
+    adminApp.style.display = 'block';
+    loadData();
+  }
+
+  if (sessionStorage.getItem(SESSION_KEY) === '1') showApp();
+
+  document.getElementById('loginBtn').addEventListener('click', async () => {
+    const u = document.getElementById('userInput').value.trim();
+    const p = document.getElementById('passInput').value;
+    const hash = await sha256Hex(`${u}:${p}`);
+    if (hash === ADMIN_CRED_HASH) {
+      sessionStorage.setItem(SESSION_KEY, '1');
+      loginError.style.display = 'none';
+      showApp();
+    } else {
+      loginError.style.display = 'block';
+    }
+  });
+  document.getElementById('passInput').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') document.getElementById('loginBtn').click();
+  });
+
+  document.getElementById('logoutBtn').addEventListener('click', () => {
+    sessionStorage.removeItem(SESSION_KEY);
+    location.reload();
+  });
+
+  /* ---------------- data ---------------- */
+  let menuData = null;
+  const CATEGORY_ORDER = ['corba','oncesi','spesiyal','sofra','klasikler','ilaveler','icecekler','tatli'];
+  const CATEGORY_LABELS = {
+    corba: 'Gün Boyu Çorba', oncesi: "Pide'den Önce", spesiyal: 'Şef Spesiyal Pideleri', sofra: 'Ayın Sofrasında (haftalık)',
+    klasikler: 'Klasikler', ilaveler: 'İlaveler (Klasikler altında)', icecekler: 'Yerel / Özel İçecekler', tatli: "Pide'den Sonra Tatlı Son"
+  };
+
+  function loadData(fromServer){
+    const stored = !fromServer && localStorage.getItem(MENU_STORAGE_KEY);
+    if (stored) {
+      try { menuData = JSON.parse(stored); renderCategories(); renderGalleryItems(); return; } catch(e){}
+    }
+    fetch('menu-data.json').then(r => r.json()).then(data => {
+      menuData = data;
+      renderCategories();
+      renderGalleryItems();
+    }).catch(() => {
+      document.getElementById('categoriesWrap').innerHTML = '<p style="text-align:center;color:#C1502E">menu-data.json yüklenemedi. Bu paneli bir sunucu üzerinden (http/https) açtığınızdan emin olun — dosyayı doğrudan çift tıklayarak (file://) açmak tarayıcı güvenliği nedeniyle çalışmaz.</p>';
+    });
+  }
+
+  function renderCategories(){
+    const wrap = document.getElementById('categoriesWrap');
+    wrap.innerHTML = '';
+    CATEGORY_ORDER.forEach(catId => {
+      const cat = menuData.categories[catId];
+      if (!cat) return;
+      const section = document.createElement('div');
+      section.className = 'category';
+      if (catId === 'sofra') {
+        section.innerHTML = `<h3>${CATEGORY_LABELS[catId] || catId}</h3><div class="weeks" data-cat="${catId}"></div>
+          <button class="add-item-btn" data-add-week="${catId}">+ Yeni Hafta Ekle</button>`;
+        wrap.appendChild(section);
+        const weeksWrap = section.querySelector('.weeks');
+        cat.weeks.forEach((w, idx) => weeksWrap.appendChild(buildWeekRow(catId, idx, w)));
+      } else {
+        section.innerHTML = `<h3>${CATEGORY_LABELS[catId] || catId}</h3><div class="items" data-cat="${catId}"></div>
+          <button class="add-item-btn" data-add="${catId}">+ Yeni Ürün Ekle</button>`;
+        wrap.appendChild(section);
+        const itemsWrap = section.querySelector('.items');
+        cat.items.forEach((item, idx) => itemsWrap.appendChild(buildItemRow(catId, idx, item)));
+      }
+    });
+    wrap.querySelectorAll('[data-add]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const catId = btn.dataset.add;
+        menuData.categories[catId].items.push({ id: catId + '-' + Date.now(), nameTr:'', nameEn:'', descTr:'', descEn:'', price:'' });
+        renderCategories();
+      });
+    });
+    wrap.querySelectorAll('[data-add-week]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const catId = btn.dataset.addWeek;
+        menuData.categories[catId].weeks.push({ id: catId + '-' + Date.now(), tagTr:'', tagEn:'', descTr:'', descEn:'', price:'' });
+        renderCategories();
+      });
+    });
+  }
+
+  function buildWeekRow(catId, idx, w){
+    const row = document.createElement('div');
+    row.className = 'week-row';
+    row.innerHTML = `
+      <button class="del-btn" data-del="1">Sil ✕</button>
+      <div><label>Etiket (TR)</label><input data-f="tagTr" value="${escapeAttr(w.tagTr)}" placeholder="örn. 1. HAFTA"></div>
+      <div><label>Etiket (EN)</label><input data-f="tagEn" value="${escapeAttr(w.tagEn)}" placeholder="örn. WEEK 1"></div>
+      <div><label>Fiyat (₺)</label><input data-f="price" value="${escapeAttr(w.price)}" placeholder="örn. 450"></div>
+      <div class="full"><label>Açıklama (TR)</label><input data-f="descTr" value="${escapeAttr(w.descTr)}"></div>
+      <div class="full"><label>Açıklama (EN)</label><input data-f="descEn" value="${escapeAttr(w.descEn)}"></div>
+    `;
+    row.querySelectorAll('[data-f]').forEach(input => {
+      input.addEventListener('input', () => {
+        menuData.categories[catId].weeks[idx][input.dataset.f] = input.value;
+      });
+    });
+    row.querySelector('[data-del]').addEventListener('click', () => {
+      if (!confirm('Bu haftayı silmek istediğinize emin misiniz?')) return;
+      menuData.categories[catId].weeks.splice(idx, 1);
+      renderCategories();
+    });
+    return row;
+  }
+
+  function buildItemRow(catId, idx, item){
+    const row = document.createElement('div');
+    row.className = 'item-row';
+    row.innerHTML = `
+      <button class="del-btn" data-del="1">Ürünü Sil ✕</button>
+      <div><label>Ürün Adı (TR)</label><input data-f="nameTr" value="${escapeAttr(item.nameTr)}"></div>
+      <div><label>Ürün Adı (EN)</label><input data-f="nameEn" value="${escapeAttr(item.nameEn)}"></div>
+      <div class="full"><label>Açıklama (TR)</label><textarea data-f="descTr">${escapeHtml(item.descTr)}</textarea></div>
+      <div class="full"><label>Açıklama (EN)</label><textarea data-f="descEn">${escapeHtml(item.descEn)}</textarea></div>
+      <div><label>Fiyat (₺)</label><input data-f="price" value="${escapeAttr(item.price)}" placeholder="örn. 320"></div>
+      <div class="full">
+        <label>Ürün Görseli (opsiyonel)</label>
+        <input data-f="image" value="${escapeAttr(item.image || '')}" placeholder="örn. lahmacun.jpeg">
+        <div class="img-upload-row">
+          <input type="file" accept="image/*" data-img-file="1">
+          <button type="button" data-img-upload="1">Görsel Yükle</button>
+        </div>
+        <p class="upload-status" data-img-status="1"></p>
+      </div>
+    `;
+    row.querySelectorAll('[data-f]').forEach(input => {
+      input.addEventListener('input', () => {
+        menuData.categories[catId].items[idx][input.dataset.f] = input.value;
+      });
+    });
+    row.querySelector('[data-del]').addEventListener('click', () => {
+      if (!confirm('Bu ürünü silmek istediğinize emin misiniz?')) return;
+      menuData.categories[catId].items.splice(idx, 1);
+      renderCategories();
+    });
+    const imgStatus = row.querySelector('[data-img-status]');
+    row.querySelector('[data-img-upload]').addEventListener('click', async () => {
+      const fileInput = row.querySelector('[data-img-file]');
+      const file = fileInput.files[0];
+      if (!file) { imgStatus.textContent = 'Önce bir görsel seçin.'; return; }
+      imgStatus.textContent = 'Yükleniyor...';
+      try {
+        const base64 = await fileToBase64(file);
+        const filename = 'item-' + catId + '-' + idx + '-' + Date.now() + '-' + sanitizeFilename(file.name);
+        await uploadFileToGithub(filename, base64, 'Ürün görseli eklendi (admin panel)');
+        menuData.categories[catId].items[idx].image = filename;
+        row.querySelector('[data-f="image"]').value = filename;
+        await publishToGithub();
+        imgStatus.textContent = 'Görsel yüklendi ve yayınlandı!';
+      } catch (e) {
+        imgStatus.textContent = 'Hata: ' + e.message;
+      }
+    });
+    return row;
+  }
+
+  function escapeHtml(s){ return String(s||'').replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
+  function escapeAttr(s){ return escapeHtml(s).replace(/"/g,'&quot;'); }
+
+  /* ---------------- GitHub settings ---------------- */
+  const GH_SETTINGS_KEY = 'keskin-admin-github-settings';
+  const ghOwner = document.getElementById('ghOwner');
+  const ghRepo = document.getElementById('ghRepo');
+  const ghBranch = document.getElementById('ghBranch');
+  const ghToken = document.getElementById('ghToken');
+  const ghRemember = document.getElementById('ghRemember');
+
+  (function loadGhSettings(){
+    try {
+      const saved = JSON.parse(localStorage.getItem(GH_SETTINGS_KEY) || 'null');
+      if (saved) {
+        ghOwner.value = saved.owner || '';
+        ghRepo.value = saved.repo || '';
+        ghBranch.value = saved.branch || '';
+        ghToken.value = saved.token || '';
+        ghRemember.checked = true;
+      }
+    } catch(e) {}
+  })();
+
+  function saveGhSettingsIfNeeded(){
+    if (ghRemember.checked) {
+      localStorage.setItem(GH_SETTINGS_KEY, JSON.stringify({
+        owner: ghOwner.value.trim(), repo: ghRepo.value.trim(),
+        branch: ghBranch.value.trim(), token: ghToken.value.trim()
+      }));
+    } else {
+      localStorage.removeItem(GH_SETTINGS_KEY);
+    }
+  }
+
+  function utf8ToBase64(str){
+    return btoa(unescape(encodeURIComponent(str)));
+  }
+
+  function fileToBase64(file){
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result.split(',')[1]);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
+
+  function sanitizeFilename(name){
+    const dot = name.lastIndexOf('.');
+    const base = (dot > -1 ? name.slice(0, dot) : name)
+      .toLowerCase().trim()
+      .replace(/[^a-z0-9-_]+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
+    const ext = dot > -1 ? name.slice(dot).toLowerCase() : '';
+    return (base || 'gorsel') + ext;
+  }
+
+  function getGhCreds(){
+    return {
+      owner: ghOwner.value.trim(), repo: ghRepo.value.trim(),
+      branch: ghBranch.value.trim() || 'main', token: ghToken.value.trim()
+    };
+  }
+
+  async function uploadFileToGithub(path, base64Content, message){
+    const { owner, repo, branch, token } = getGhCreds();
+    if (!owner || !repo || !token) throw new Error('GitHub kullanıcı adı, repo adı ve token gerekli.');
+    const apiBase = `https://api.github.com/repos/${owner}/${repo}/contents/${encodeURIComponent(path)}`;
+    const headers = { 'Authorization': `token ${token}`, 'Accept': 'application/vnd.github+json' };
+    let sha;
+    const getRes = await fetch(`${apiBase}?ref=${encodeURIComponent(branch)}`, { headers });
+    if (getRes.ok) { sha = (await getRes.json()).sha; }
+    else if (getRes.status !== 404) {
+      const errJ = await getRes.json().catch(() => ({}));
+      throw new Error(errJ.message || `Dosya bilgisi alınamadı (${getRes.status})`);
+    }
+    const putRes = await fetch(apiBase, {
+      method: 'PUT',
+      headers: { ...headers, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message, content: base64Content, sha, branch })
+    });
+    if (!putRes.ok) {
+      const errJ = await putRes.json().catch(() => ({}));
+      throw new Error(errJ.message || `GitHub hata verdi (${putRes.status})`);
+    }
+  }
+
+  async function publishToGithub(){
+    saveGhSettingsIfNeeded();
+    status.textContent = 'GitHub\'a bağlanılıyor...';
+    try {
+      const content = utf8ToBase64(JSON.stringify(menuData, null, 2));
+      await uploadFileToGithub('menu-data.json', content, 'Menü güncellendi (admin panel)');
+      localStorage.setItem(MENU_STORAGE_KEY, JSON.stringify(menuData));
+      status.textContent = 'Yayınlandı! GitHub Pages birkaç saniye – birkaç dakika içinde siteyi güncelleyecek.';
+    } catch (e) {
+      status.textContent = 'Hata: ' + e.message + ' — bilgileri kontrol edip tekrar deneyin, ya da "menu-data.json İndir" ile elle yükleyin.';
+    }
+  }
+
+  document.getElementById('publishBtn').addEventListener('click', publishToGithub);
+
+  /* ---------------- gallery admin ---------------- */
+  function renderGalleryItems(){
+    const wrap = document.getElementById('galleryItemsWrap');
+    wrap.innerHTML = (menuData.gallery || []).map((g, idx) => `
+      <div class="gal-card">
+        <img src="${escapeAttr(g.image)}" alt="${escapeAttr(g.altTr || '')}" onerror="this.style.opacity='0.15'">
+        <button class="gal-del" data-gal-del="${idx}" title="Sil">✕</button>
+      </div>`).join('');
+    wrap.querySelectorAll('[data-gal-del]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (!confirm('Bu görseli galeriden kaldırmak istediğinize emin misiniz?')) return;
+        menuData.gallery.splice(Number(btn.dataset.galDel), 1);
+        renderGalleryItems();
+        publishToGithub();
+      });
+    });
+  }
+
+  document.getElementById('galleryUploadBtn').addEventListener('click', async () => {
+    const fileInput = document.getElementById('galleryFileInput');
+    const altInput = document.getElementById('galleryAltInput');
+    const file = fileInput.files[0];
+    if (!file) { status.textContent = 'Önce bir görsel seçin.'; return; }
+    status.textContent = 'Görsel yükleniyor...';
+    try {
+      const base64 = await fileToBase64(file);
+      const filename = 'gallery-' + Date.now() + '-' + sanitizeFilename(file.name);
+      await uploadFileToGithub(filename, base64, 'Galeriye görsel eklendi (admin panel)');
+      menuData.gallery = menuData.gallery || [];
+      menuData.gallery.push({ id: 'gal-' + Date.now(), image: filename, altTr: altInput.value.trim(), altEn: altInput.value.trim() });
+      renderGalleryItems();
+      await publishToGithub();
+      fileInput.value = ''; altInput.value = '';
+      status.textContent = 'Görsel yüklendi ve galeriye eklendi!';
+    } catch (e) {
+      status.textContent = 'Hata: ' + e.message;
+    }
+  });
+
+  /* ---------------- actions ---------------- */
+  const status = document.getElementById('saveStatus');
+  document.getElementById('saveBtn').addEventListener('click', () => {
+    localStorage.setItem(MENU_STORAGE_KEY, JSON.stringify(menuData));
+    status.textContent = 'Kaydedildi — bu tarayıcıda index.html açıldığında değişiklikler görünecek.';
+    setTimeout(() => status.textContent = '', 4000);
+  });
+
+  document.getElementById('downloadBtn').addEventListener('click', () => {
+    const blob = new Blob([JSON.stringify(menuData, null, 2)], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'menu-data.json';
+    a.click();
+    status.textContent = 'İndirildi — sitenizin canlıda değişmesi için bu dosyayı sunucunuza yükleyip eski menu-data.json dosyasının üzerine yazın.';
+    setTimeout(() => status.textContent = '', 6000);
+  });
+
+  document.getElementById('resetBtn').addEventListener('click', () => {
+    if (!confirm('Bu tarayıcıdaki kaydedilmemiş değişiklikler silinecek ve sitedeki menu-data.json yeniden yüklenecek. Emin misiniz?')) return;
+    loadData(true);
+  });
+
+  /* ---------------- tabs ---------------- */
+  const tabMenuBtn = document.getElementById('tabMenuBtn');
+  const tabHomeBtn = document.getElementById('tabHomeBtn');
+  const menuTab = document.getElementById('menuTab');
+  const homeTab = document.getElementById('homeTab');
+
+  tabMenuBtn.addEventListener('click', () => {
+    tabMenuBtn.classList.add('active'); tabHomeBtn.classList.remove('active');
+    menuTab.style.display = 'block'; homeTab.style.display = 'none';
+  });
+  tabHomeBtn.addEventListener('click', () => {
+    tabHomeBtn.classList.add('active'); tabMenuBtn.classList.remove('active');
+    homeTab.style.display = 'block'; menuTab.style.display = 'none';
+    loadHomeLayout();
+  });
+
+  /* ---------------- home layout editor ---------------- */
+  const HOME_PAGE_FILE = 'index.html'; // README'ye göre sitenin ana dosya adı
+  let homeRawHtml = null; // GitHub/sunucudan okunan ham index.html içeriği
+  const hs1 = document.getElementById('hs1'), hs2 = document.getElementById('hs2'), hs3 = document.getElementById('hs3');
+  const hv1 = document.getElementById('hv1'), hv2 = document.getElementById('hv2'), hv3 = document.getElementById('hv3');
+  const hpContent = document.getElementById('hpContent');
+  const hpCopy = document.getElementById('hpCopy');
+  const homeStatus = document.getElementById('homeStatus');
+  let homeLoaded = false;
+
+  function applyHomeSliders(){
+    hpContent.style.paddingTop = hs1.value + 'px';
+    hpCopy.style.marginTop = hs2.value + 'px';
+    hpContent.style.paddingBottom = hs3.value + 'px';
+    hv1.textContent = hs1.value + 'px';
+    hv2.textContent = hs2.value + 'px';
+    hv3.textContent = hs3.value + 'px';
+  }
+  [hs1, hs2, hs3].forEach(s => s.addEventListener('input', applyHomeSliders));
+
+  function readCssVar(html, varName, fallback){
+    const m = html.match(new RegExp('--' + varName + ':\\s*(\\d+)px'));
+    return m ? m[1] : fallback;
+  }
+
+  function loadHomeLayout(){
+    if (homeLoaded) return; // aynı oturumda tekrar tekrar sunucudan çekmeye gerek yok
+    homeStatus.textContent = HOME_PAGE_FILE + ' okunuyor...';
+    fetch(HOME_PAGE_FILE + '?t=' + Date.now())
+      .then(r => { if (!r.ok) throw new Error('Bulunamadı'); return r.text(); })
+      .then(html => {
+        homeRawHtml = html;
+        if (!/--home-logo-top:/.test(html)) {
+          homeStatus.textContent = 'Bu ' + HOME_PAGE_FILE + ' dosyasında henüz konum ayarları (CSS değişkenleri) yok — önce güncellenmiş index.html dosyasının siteye yüklenmesi gerekiyor. Değerler varsayılan gösteriliyor, yine de kaydedebilirsin ama sitede etkili olması için önce dosyanın güncellenmesi lazım.';
+        } else {
+          homeStatus.textContent = '';
+        }
+        hs1.value = readCssVar(html, 'home-logo-top', 78);
+        hs2.value = readCssVar(html, 'home-text-top', 190);
+        hs3.value = readCssVar(html, 'home-footer-bottom', 94);
+        applyHomeSliders();
+        homeLoaded = true;
+      })
+      .catch(() => {
+        homeStatus.textContent = HOME_PAGE_FILE + ' okunamadı. Bu paneli bir sunucu üzerinden (http/https) açtığınızdan ve ' + HOME_PAGE_FILE + ' dosyasının bu panelle aynı klasörde olduğundan emin olun. Yine de kaydırıcılarla önizleme yapabilir, "Kaydet ve Yayınla" ile deneyebilirsiniz.';
+        applyHomeSliders();
+      });
+  }
+
+  function setCssVar(html, varName, newValue){
+    const re = new RegExp('(--' + varName + ':\\s*)\\d+(px)');
+    if (re.test(html)) return html.replace(re, '$1' + newValue + '$2');
+    // değişken dosyada hiç yoksa, en üstteki <style> açılışından hemen sonra ekle
+    return html.replace(/<style>/, '<style>\n  :root{ --' + varName + ': ' + newValue + 'px; }');
+  }
+
+  document.getElementById('homePublishBtn').addEventListener('click', async () => {
+    saveGhSettingsIfNeeded();
+    homeStatus.textContent = 'GitHub\'a bağlanılıyor...';
+    try {
+      let html = homeRawHtml;
+      if (!html) {
+        // önceden okunamadıysa şimdi tekrar dene
+        const r = await fetch(HOME_PAGE_FILE + '?t=' + Date.now());
+        if (!r.ok) throw new Error(HOME_PAGE_FILE + ' okunamadı, önce dosyanın sunucuda olduğundan emin olun.');
+        html = await r.text();
+      }
+      html = setCssVar(html, 'home-logo-top', hs1.value);
+      html = setCssVar(html, 'home-text-top', hs2.value);
+      html = setCssVar(html, 'home-footer-bottom', hs3.value);
+      const content = utf8ToBase64(html);
+      await uploadFileToGithub(HOME_PAGE_FILE, content, 'Ana sayfa yerleşimi güncellendi (admin panel)');
+      homeRawHtml = html;
+      homeStatus.textContent = 'Yayınlandı! GitHub Pages birkaç saniye – birkaç dakika içinde siteyi güncelleyecek.';
+    } catch (e) {
+      homeStatus.textContent = 'Hata: ' + e.message;
+    }
+  });
+</script>
+</body>
+</html>
